@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="全国67个零碳园区公开建设状态、数据透明度与42项评价数据准备度图谱">
+  <meta name="theme-color" content="#f3f1e9">
+  <title>零碳园区公开数据图谱 · Zero-Carbon Park Data Atlas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home"><span class="brand-mark">图</span><span><strong>零碳园区公开数据图谱</strong><small>Zero-Carbon Park Data Atlas</small></span></a>
+    <nav aria-label="主要导航"><a href="#map">全国地图</a><a href="#profiles">园区画像</a><a href="#transparency">数据透明度</a><a href="#readiness">42项准备度</a><a href="#sources">数据来源</a><a href="#method">方法说明</a></nav>
+  </header>
+
+  <main id="home">
+    <section class="hero section">
+      <div class="hero-copy"><div class="kicker">PUBLIC EVIDENCE ATLAS · 2026</div><h1>零碳园区<br>公开数据图谱</h1><p class="hero-en">Zero-Carbon Park Data Atlas</p><p class="lead">基于公开证据构建的全国零碳园区建设状态、数据透明度与评价数据准备度平台。</p><div class="boundary-note"><strong>方法边界</strong>：公开信息用于验证建设状态和判断数据可获得性；完整评价仍依赖园区台账、企业调查与监测系统。</div></div>
+      <div id="heroStats" class="hero-stats" aria-label="数据概况"></div>
+    </section>
+
+    <section id="map" class="section section-tint">
+      <div class="section-head"><div><div class="kicker">NATIONAL LANDSCAPE</div><h2>全国园区地图</h2><p>点位用于园区导航，并非园区法定边界。建设状态使用名单与认定文件，不表示园区绩效。</p></div></div>
+      <div class="filter-row" role="group" aria-label="园区筛选">
+        <button class="filter active" data-filter="ALL">全部</button><button class="filter" data-filter="NATIONAL">国家级</button><button class="filter" data-filter="GUANGDONG">广东省级</button><button class="filter" data-filter="DESIGNATED">正式认定</button><button class="filter" data-filter="SELECTED_FOR_CONSTRUCTION">建设名单</button>
+        <label class="search">搜索园区<input id="parkSearch" type="search" placeholder="名称、省市或产业"></label>
+      </div>
+      <div class="map-layout">
+        <div class="map-card"><div class="map-count" id="mapCount">读取中…</div><div class="map-canvas"><img src="assets/china_map_light.png" alt="中国园区地图背景"><div id="markers" class="markers"></div></div><div class="map-legend"><span><i class="legend-dot designated"></i>正式认定</span><span><i class="legend-dot selected"></i>建设名单</span></div></div>
+        <aside id="mapDetail" class="panel map-detail"><div class="empty"><strong>选择一个园区</strong><span>查看基本信息、C55-P状态、公开数据概况和证据。</span></div></aside>
+      </div>
+    </section>
+
+    <section id="profiles" class="section">
+      <div class="section-head split"><div><div class="kicker">PARK PROFILE</div><h2>园区公开画像</h2><p>画像只整理公开可验证事实，不生成综合绿色分数。</p></div><label class="select-label">选择园区<select id="profileSelect"></select></label></div>
+      <div id="profileContent" class="profile-layout"></div>
+    </section>
+
+    <section id="transparency" class="section section-tint">
+      <div class="section-head split"><div><div class="kicker">DATA TRANSPARENCY</div><h2>数据透明度</h2><p class="fixed-boundary">数据透明度仅表示公开信息可获得性，不代表园区绿色低碳发展水平。</p></div><label class="select-label">排序字段<select id="transparencySort"><option value="Direct_Public_Data_Rate">直接公开数据率</option><option value="Official_Evidence_Rate">官方证据率</option><option value="Recent_Data_Rate">近期数据率</option><option value="Missing_Rate">缺失率</option></select></label></div>
+      <div id="transparencySummary" class="summary-cards"></div><div id="transparencyBars" class="transparency-bars"></div>
+    </section>
+
+    <section id="readiness" class="section">
+      <div class="section-head split"><div><div class="kicker">42-INDICATOR READINESS</div><h2>完整评价数据准备度</h2><p>按数据获取方式展示42项准备状态。缺失为空，不折算为0。</p></div><label class="select-label">选择园区<select id="matrixSelect"></select></label></div>
+      <div id="readinessSummary" class="summary-cards"></div><div id="matrixLegend" class="matrix-legend"></div><div id="indicatorMatrix" class="indicator-matrix"></div>
+    </section>
+
+    <section id="c55" class="section section-dark">
+      <div class="section-head"><div><div class="kicker">C55-P STATUS FOCUS</div><h2>绿色低碳建设状态专题</h2><p>数量从CSV动态汇总，当前状态与历史记录分开呈现。</p></div></div>
+      <div id="c55Stats" class="c55-stats"></div><div class="c55-grid"><article><h3>正式认定园区</h3><div id="designatedList" class="park-list"></div></article><article><h3>建设名单园区</h3><div id="selectedList" class="park-list"></div></article><article><h3>历史状态</h3><div id="historyList" class="history-list"></div></article></div>
+    </section>
+
+    <section id="sources" class="section">
+      <div class="section-head split"><div><div class="kicker">TRACEABLE EVIDENCE</div><h2>数据来源</h2><p>所有公开状态与公开值通过Evidence_ID回到统一证据库。</p></div><label class="search source-search">检索证据<input id="evidenceSearch" type="search" placeholder="园区、指标、发布者或Evidence_ID"></label></div>
+      <div class="table-wrap"><table><thead><tr><th>Evidence ID</th><th>园区</th><th>公开事实</th><th>发布者 / 年份</th><th>来源</th></tr></thead><tbody id="evidenceTable"></tbody></table></div><button id="moreEvidence" class="button outline">显示更多</button>
+    </section>
+
+    <section id="method" class="section method-section">
+      <div class="section-head"><div><div class="kicker">METHODOLOGY</div><h2>方法说明</h2></div></div>
+      <div class="method-grid"><article><h3>本网站展示什么</h3><p>公开数据可验证的园区建设状态、公开信息透明度、42项完整评价的数据准备状态及可追溯证据。</p></article><article><h3>本网站不做什么</h3><p>不计算67园区综合绿色发展评分，不输出绿色发展排名、benchmark或100分总分。公开信息缺失不代表园区表现较差。</p></article><article><h3>完整评价还需要什么</h3><p>园区填报、企业调查、环境监测、能源监测、水务数据、安全管理系统和智慧园区数据。</p></article></div>
+    </section>
+  </main>
+
+  <footer><strong>零碳园区公开数据图谱</strong><span>公开证据 · 状态画像 · 数据准备度</span><span id="dataStamp">数据读取中</span></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
