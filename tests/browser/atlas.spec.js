@@ -28,7 +28,7 @@ test("园区画像、42项矩阵和证据可展开", async ({ page }) => {
   await c42.locator("summary").click();
   await expect(c42).toContainText("再生水实际利用量");
   await expect(page.locator("#evidenceTable tr").first()).toBeVisible();
-  await expect(page.locator(".fixed-boundary")).toContainText("不代表园区绿色低碳发展水平");
+  await expect(page.locator("#transparency .fixed-boundary")).toContainText("不代表园区绿色低碳发展水平");
 });
 
 test("390px移动端无横向溢出", async ({ page }) => {

@@ -11,7 +11,7 @@
 <body>
   <header class="topbar">
     <a class="brand" href="#home"><span class="brand-mark">图</span><span><strong>零碳园区公开数据图谱</strong><small>Zero-Carbon Park Data Atlas</small></span></a>
-    <nav aria-label="主要导航"><a href="#map">全国地图</a><a href="#profiles">园区画像</a><a href="#transparency">数据透明度</a><a href="#readiness">42项准备度</a><a href="#sources">数据来源</a><a href="#method">方法说明</a></nav>
+    <nav aria-label="主要导航"><a href="#map">全国地图</a><a href="#profiles">园区画像</a><a href="#transparency">数据透明度</a><a href="#readiness">42项准备度</a><a href="#sources">数据来源</a><a href="#contribute">数据共建</a><a href="#method">方法说明</a></nav>
   </header>
 
   <main id="home">
@@ -48,8 +48,16 @@
     </section>
 
     <section id="c55" class="section section-dark">
-      <div class="section-head"><div><div class="kicker">C55-P STATUS FOCUS</div><h2>绿色低碳建设状态专题</h2><p>数量从CSV动态汇总，当前状态与历史记录分开呈现。</p></div></div>
+      <div class="section-head split"><div><div class="kicker">C55-P STATUS FOCUS</div><h2>绿色低碳建设状态专题</h2><p>数量从CSV动态汇总，当前状态与历史记录分开呈现。</p></div><div class="contribution-actions"><button class="button light" data-open-contribution="NEW_STATUS">＋ 补充建设状态</button><button class="button light" data-open-contribution="CORRECTION">发现信息有误？提交纠错</button></div></div>
       <div id="c55Stats" class="c55-stats"></div><div class="c55-grid"><article><h3>正式认定园区</h3><div id="designatedList" class="park-list"></div></article><article><h3>建设名单园区</h3><div id="selectedList" class="park-list"></div></article><article><h3>历史状态</h3><div id="historyList" class="history-list"></div></article></div>
+      <div class="submission-log-panel"><div><h3>数据补充记录</h3><p>只展示已登记的公开审核状态，不公开提交人联系方式。</p></div><a class="button light" href="https://github.com/Erwintao21/zero-carbon-park-atlas/issues?q=is%3Aissue+label%3Ac55p" target="_blank" rel="noopener">查看待审核 Issues ↗</a></div>
+      <div id="submissionLog" class="submission-log"></div>
+    </section>
+
+    <section id="contribute" class="section contribution-section">
+      <div class="section-head split"><div><div class="kicker">PUBLIC DATA CONTRIBUTION</div><h2>数据共建</h2><p>如果您掌握园区正式认定、建设名单、试点、规划状态或其他权威公开资料，可以提交补充。所有信息经人工审核后才进入正式数据库。</p></div><div class="contribution-actions"><button class="button primary" data-open-contribution="NEW_STATUS">补充建设状态</button><button class="button" data-open-contribution="CORRECTION">提交信息纠错</button></div></div>
+      <div class="contribution-principles"><article><strong>先证据、后状态</strong><span>每项提交必须提供可访问的来源与直接支持判断的简短证据。</span></article><article><strong>先审核、后入库</strong><span>GitHub Issue 默认进入 PENDING 队列，不直接修改正式 CSV。</span></article><article><strong>只追加、不覆盖</strong><span>接受的新状态和纠错记录追加到历史库，保留原记录与追溯关系。</span></article></div>
+      <p class="fixed-boundary">当前只正式开放 <strong>C55P_STATUS</strong>。代码已为未来的 INDICATOR_VALUE、EVIDENCE_CORRECTION 和 PARK_INFORMATION 预留类型接口。</p>
     </section>
 
     <section id="sources" class="section">
@@ -59,12 +67,34 @@
 
     <section id="method" class="section method-section">
       <div class="section-head"><div><div class="kicker">METHODOLOGY</div><h2>方法说明</h2></div></div>
-      <div class="method-grid"><article><h3>本网站展示什么</h3><p>公开数据可验证的园区建设状态、公开信息透明度、42项完整评价的数据准备状态及可追溯证据。</p></article><article><h3>本网站不做什么</h3><p>不计算67园区综合绿色发展评分，不输出绿色发展排名、benchmark或100分总分。公开信息缺失不代表园区表现较差。</p></article><article><h3>完整评价还需要什么</h3><p>园区填报、企业调查、环境监测、能源监测、水务数据、安全管理系统和智慧园区数据。</p></article></div>
+      <div class="method-grid"><article><h3>本网站展示什么</h3><p>公开数据可验证的园区建设状态、公开信息透明度、42项完整评价的数据准备状态及可追溯证据。</p></article><article><h3>本网站不做什么</h3><p>不计算67园区综合绿色发展评分，不输出绿色发展排名、benchmark或100分总分。公开信息缺失不代表园区表现较差。</p></article><article><h3>完整评价还需要什么</h3><p>园区填报、企业调查、环境监测、能源监测、水务数据、安全管理系统和智慧园区数据。</p></article><article><h3>数据更新与审核</h3><p>用户补充或纠错先进入待审核队列；经来源与园区归属核验后才追加进正式历史库。所有旧记录保留，当前状态只由最高等级的已验证证据计算。</p></article></div>
     </section>
   </main>
+
+  <dialog id="contributionDrawer" class="drawer" aria-labelledby="contributionTitle">
+    <div class="drawer-shell">
+      <header class="drawer-head"><div><div class="kicker">C55-P STATUS SUBMISSION</div><h2 id="contributionTitle">补充 / 纠正建设状态</h2><p>本表单只生成预填 GitHub Issue，不会直接写入正式 CSV。</p></div><button class="icon-button" type="button" data-close-drawer aria-label="关闭">×</button></header>
+      <div class="drawer-grid">
+        <form id="contributionForm" novalidate>
+          <input type="hidden" name="Submission_Type_System" value="C55P_STATUS">
+          <section class="form-group"><h3>① 园区</h3><label>园区（67个现有园区）<select id="contributionPark" name="Park_ID" required></select></label><label id="otherParkWrap" hidden>园区名称（不在列表，进入单独人工复核）<input id="otherParkName" name="Other_Park_Name" autocomplete="organization"></label><output id="selectedParkId" class="field-note"></output></section>
+          <section class="form-group"><h3>② 建设状态</h3><div class="form-columns"><label>提交类型<select name="Submission_Type" required><option value="NEW_STATUS">新增状态</option><option value="UPDATE">状态更新</option><option value="CORRECTION">信息纠错</option><option value="SOURCE_SUPPLEMENT">补充证据</option></select></label><label>建议状态<select name="Proposed_Status" required><option value="">请选择</option><option value="DESIGNATED">正式认定</option><option value="SELECTED_FOR_CONSTRUCTION">入选建设名单</option><option value="PILOT">试点</option><option value="PLANNED">规划建设</option><option value="OTHER">其他</option><option value="UNKNOWN">不确定</option></select></label><label>认定层级<select name="Recognition_Level" required><option value="NATIONAL">国家级</option><option value="PROVINCIAL">省级</option><option value="MUNICIPAL">市级</option><option value="OTHER">其他</option><option value="UNKNOWN">未知</option></select></label><label>状态名称<input name="Recognition_Name" required placeholder="如：国家绿色工业园区"></label><label>状态生效年份<input name="Status_Year" inputmode="numeric" required placeholder="2026"></label></div></section>
+          <section class="form-group"><h3>③ 证据信息</h3><div class="form-columns"><label>发布机构<input name="Publisher" required placeholder="如：国家发展改革委"></label><label>文件 / 公告名称<input name="Source_Title" required></label><label>发布时间<input name="Publication_Date" required placeholder="YYYY 或 YYYY-MM-DD"></label><label class="full">官方来源 URL<input name="Source_URL" type="url" required placeholder="https://..." aria-describedby="urlHint"><small id="urlHint">优先填写 gov.cn、政府部门或官方机构来源，仅允许 http/https。</small></label><label class="full">支持该状态的原文<textarea name="Evidence_Text" required rows="3" placeholder="填写直接支持判断的一句话或简短描述，请勿粘贴整篇文章。"></textarea></label><label>页码 / 章节<input name="Evidence_Location" placeholder="第12页、附件1、表3"></label></div></section>
+          <section class="form-group"><h3>④ 补充说明</h3><label>备注<textarea name="Notes" rows="2"></textarea></label><div class="form-columns"><label>被替代的 Evidence ID（纠错时选填）<input name="Supersedes_Evidence_ID" placeholder="如：S3E-0028"></label><label>被纠正的记录 ID（纠错时选填）<input name="Corrects_Record_ID"></label><label>提交人（可选）<input name="Contributor_Name" autocomplete="name"></label><label>联系方式（可选）<input name="Contributor_Contact" autocomplete="email"><small>不会写入公开 Issue、提交日志或园区数据库。</small></label></div></section>
+          <div id="formErrors" class="form-errors" role="alert" hidden></div>
+          <button class="button primary" type="submit">生成提交预览</button>
+        </form>
+        <aside class="status-guide"><h3>状态解释与最低证据</h3><dl><dt>DESIGNATED</dt><dd>已获得正式认定或正式创建结果。应提供主管部门正式文件、名单、公告或PDF；媒体或园区宣传仅标为低质量并人工复核。</dd><dt>SELECTED_FOR_CONSTRUCTION</dt><dd>入选建设名单或建设任务，不表示已经建成或达标。优先提供政府通知及附件名单。</dd><dt>PILOT</dt><dd>正式列入“试点”或“示范试点”，证据应出现明确正式措辞。</dd><dt>PLANNED</dt><dd>规划或拟建设，可依据规划、实施方案或政府工作报告，但不能视为已认定。</dd><dt>UNKNOWN</dt><dd>暂时无法判断，必须保留证据并等待人工复核。</dd></dl></aside>
+      </div>
+      <section id="submissionPreview" class="submission-preview" hidden><div class="kicker">⑤ SUBMISSION PREVIEW</div><h3>提交预览</h3><dl id="previewFields"></dl><p class="fixed-boundary">本次提交不会直接修改数据库，需要管理员人工审核。</p><div class="preview-actions"><button class="button" id="backToEdit" type="button">返回修改</button><a class="button primary" id="confirmSubmission" target="_blank" rel="noopener">确认提交 GitHub Issue ↗</a></div><p id="submissionThanks" class="success-note" hidden>感谢补充。提交信息需要人工审核，审核通过后将进入园区建设状态历史库。</p></section>
+    </div>
+  </dialog>
+
+  <dialog id="historyDrawer" class="drawer history-drawer" aria-labelledby="historyTitle"><div class="drawer-shell"><header class="drawer-head"><div><div class="kicker">TRACEABLE STATUS HISTORY</div><h2 id="historyTitle">建设状态历史</h2></div><button class="icon-button" type="button" data-close-history aria-label="关闭">×</button></header><div id="parkHistoryTimeline" class="timeline"></div></div></dialog>
 
   <footer><strong>零碳园区公开数据图谱</strong><span>公开证据 · 状态画像 · 数据准备度</span><span id="dataStamp">数据读取中</span></footer>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="app.js" defer></script>
+  <script src="contribution.js" defer></script>
 </body>
 </html>

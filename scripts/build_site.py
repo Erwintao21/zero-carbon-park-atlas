@@ -8,7 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
 DATA_FILES = (
     "park_catalog.csv", "park_profiles.csv", "park_transparency.csv",
-    "park_indicator_availability.csv", "c55p_status_history.csv", "park_public_evidence.csv",
+    "park_indicator_availability.csv", "c55p_status_history.csv", "c55p_submission_log.csv",
+    "park_public_evidence.csv",
 )
 
 
