@@ -1,0 +1,124 @@
+name: 补充 / 更新园区建设状态
+description: 提交零碳园区建设状态、正式认定、建设名单、试点或相关证据。
+title: "[C55-P Submission] PARK_ID | STATUS | RECOGNITION_NAME"
+labels:
+  - data-submission
+  - c55p
+  - needs-review
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交不会直接修改正式数据库。管理员核验来源、园区归属和状态定义后，才会将接受记录追加到历史库。
+  - type: input
+    id: submission_id
+    attributes:
+      label: Submission_ID
+      description: 从零碳园区公开数据图谱提交预览中复制。
+    validations:
+      required: true
+  - type: input
+    id: park_id
+    attributes:
+      label: Park_ID
+    validations:
+      required: true
+  - type: input
+    id: park_name
+    attributes:
+      label: Park_Name
+    validations:
+      required: true
+  - type: dropdown
+    id: submission_type
+    attributes:
+      label: Submission_Type
+      options: [NEW_STATUS, UPDATE, CORRECTION, SOURCE_SUPPLEMENT]
+    validations:
+      required: true
+  - type: dropdown
+    id: proposed_status
+    attributes:
+      label: Proposed_Status
+      options: [DESIGNATED, SELECTED_FOR_CONSTRUCTION, PILOT, PLANNED, OTHER, UNKNOWN]
+    validations:
+      required: true
+  - type: dropdown
+    id: recognition_level
+    attributes:
+      label: Recognition_Level
+      options: [NATIONAL, PROVINCIAL, MUNICIPAL, OTHER, UNKNOWN]
+    validations:
+      required: true
+  - type: input
+    id: recognition_name
+    attributes:
+      label: Recognition_Name
+    validations:
+      required: true
+  - type: input
+    id: status_year
+    attributes:
+      label: Status_Year
+      placeholder: "2026"
+    validations:
+      required: true
+  - type: input
+    id: publisher
+    attributes:
+      label: Publisher
+    validations:
+      required: true
+  - type: input
+    id: source_title
+    attributes:
+      label: Source_Title
+    validations:
+      required: true
+  - type: input
+    id: publication_date
+    attributes:
+      label: Publication_Date
+      placeholder: YYYY 或 YYYY-MM-DD
+    validations:
+      required: true
+  - type: input
+    id: source_url
+    attributes:
+      label: Source_URL
+      placeholder: https://...
+    validations:
+      required: true
+  - type: textarea
+    id: evidence_text
+    attributes:
+      label: Evidence_Text
+      description: 只摘录直接支持判断的一句话或简短描述，请勿粘贴整篇文章。
+    validations:
+      required: true
+  - type: input
+    id: evidence_location
+    attributes:
+      label: Evidence_Location
+      placeholder: 第12页、附件1、表3或第三部分
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+  - type: input
+    id: supersedes_evidence_id
+    attributes:
+      label: Supersedes_Evidence_ID
+      description: 纠错时填写被替代的Evidence ID；不适用可留空。
+  - type: input
+    id: corrects_record_id
+    attributes:
+      label: Corrects_Record_ID
+      description: 纠错时填写被纠正的记录ID；不适用可留空。
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: 审核确认
+      options:
+        - label: 我理解本次提交默认状态为 PENDING，不会直接更新正式园区数据。
+          required: true

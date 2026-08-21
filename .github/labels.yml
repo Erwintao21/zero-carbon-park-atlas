@@ -1,0 +1,21 @@
+- name: data-submission
+  color: "2B7A78"
+  description: Public data contribution awaiting review
+- name: c55p
+  color: "5B4B8A"
+  description: C55-P construction status submission
+- name: needs-review
+  color: "D4A72C"
+  description: Manual evidence and park matching review required
+- name: accepted
+  color: "4C7A67"
+  description: Reviewed and accepted for controlled database update
+- name: rejected
+  color: "8A5260"
+  description: Reviewed and rejected
+- name: duplicate
+  color: "7A7A72"
+  description: Duplicate submission or evidence
+- name: needs-more-evidence
+  color: "4F6F8F"
+  description: Additional authoritative evidence is required
