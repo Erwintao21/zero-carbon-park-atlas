@@ -211,6 +211,10 @@
     $("#selectedParkId").textContent = value === "OUT_OF_CATALOG" ? "Park_ID：OUT_OF_CATALOG · 进入人工复核" : `Park_ID：${value}`;
   }
   function openContribution(parkId = "", submissionType = "NEW_STATUS") {
+    if (!model.catalog.length) {
+      document.addEventListener("atlas:data-ready", () => openContribution(parkId, submissionType), { once: true });
+      return;
+    }
     const form = $("#contributionForm");
     form.reset();
     form.hidden = false;
