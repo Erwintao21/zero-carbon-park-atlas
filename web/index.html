@@ -3,98 +3,160 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="全国67个零碳园区公开建设状态、数据透明度与42项评价数据准备度图谱">
-  <meta name="theme-color" content="#f3f1e9">
-  <title>零碳园区公开数据图谱 · Zero-Carbon Park Data Atlas</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="零碳园区公开数据、评价与实施决策平台：园区分布、42项标准、评分数据、核心指标、实施工作台、格尔木示范及近期动态。">
+  <meta name="theme-color" content="#f6f7f4">
+  <title>零碳园区数据、评价与实施决策平台</title>
+  <link rel="stylesheet" href="styles.css?v=merged-v3.1">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#home"><span class="brand-mark">图</span><span><strong>零碳园区公开数据图谱</strong><small>Zero-Carbon Park Data Atlas</small></span></a>
-    <nav aria-label="主要导航"><a href="#map">全国地图</a><a href="#profiles">园区画像</a><a href="#transparency">数据透明度</a><a href="#readiness">42项准备度</a><a href="#sources">数据来源</a><a href="#contribute">数据共建</a><a href="#method">方法说明</a></nav>
-  </header>
+<header class="topbar">
+  <a class="brand" href="#top"><span class="brand-mark">ZC</span><span><strong>零碳园区数据与实施决策平台</strong><small>Data · Evaluation · Decision</small></span></a>
+  <nav aria-label="主要导航">
+    <a href="#parks">园区</a><a href="#standards">42项标准</a><a href="#evaluation">评分与数据</a><a href="#workbench">实施工作台</a><a href="#golmud">格尔木</a><a href="#updates">动态与报告</a>
+  </nav>
+</header>
 
-  <main id="home">
-    <section class="hero section">
-      <div class="hero-copy"><div class="kicker">PUBLIC EVIDENCE ATLAS · 2026</div><h1>零碳园区<br>公开数据图谱</h1><p class="hero-en">Zero-Carbon Park Data Atlas</p><p class="lead">基于公开证据构建的全国零碳园区建设状态、数据透明度与评价数据准备度平台。</p><div class="boundary-note"><strong>方法边界</strong>：公开信息用于验证建设状态和判断数据可获得性；完整评价仍依赖园区台账、企业调查与监测系统。</div></div>
-      <div id="heroStats" class="hero-stats" aria-label="数据概况"></div>
-    </section>
-
-    <section id="map" class="section section-tint">
-      <div class="section-head"><div><div class="kicker">NATIONAL LANDSCAPE</div><h2>全国园区地图</h2><p>点位用于园区导航，并非园区法定边界。建设状态使用名单与认定文件，不表示园区绩效。</p></div></div>
-      <div class="filter-row" role="group" aria-label="园区筛选">
-        <button class="filter active" data-filter="ALL">全部</button><button class="filter" data-filter="NATIONAL">国家级</button><button class="filter" data-filter="GUANGDONG">广东省级</button><button class="filter" data-filter="DESIGNATED">正式认定</button><button class="filter" data-filter="SELECTED_FOR_CONSTRUCTION">建设名单</button>
-        <label class="search">搜索园区<input id="parkSearch" type="search" placeholder="名称、省市或产业"></label>
-      </div>
-      <div class="map-layout">
-        <div class="map-card"><div class="map-count" id="mapCount">读取中…</div><div class="map-canvas"><img src="assets/china_map_light.png" alt="中国园区地图背景"><div id="markers" class="markers"></div></div><div class="map-legend"><span><i class="legend-dot designated"></i>正式认定</span><span><i class="legend-dot selected"></i>建设名单</span></div></div>
-        <aside id="mapDetail" class="panel map-detail"><div class="empty"><strong>选择一个园区</strong><span>查看基本信息、C55-P状态、公开数据概况和证据。</span></div></aside>
-      </div>
-    </section>
-
-    <section id="profiles" class="section">
-      <div class="section-head split"><div><div class="kicker">PARK PROFILE</div><h2>园区公开画像</h2><p>画像只整理公开可验证事实，不生成综合绿色分数。</p></div><label class="select-label">选择园区<select id="profileSelect"></select></label></div>
-      <div id="profileContent" class="profile-layout"></div>
-    </section>
-
-    <section id="transparency" class="section section-tint">
-      <div class="section-head split"><div><div class="kicker">DATA TRANSPARENCY</div><h2>数据透明度</h2><p class="fixed-boundary">数据透明度仅表示公开信息可获得性，不代表园区绿色低碳发展水平。</p></div><label class="select-label">排序字段<select id="transparencySort"><option value="Direct_Public_Data_Rate">直接公开数据率</option><option value="Official_Evidence_Rate">官方证据率</option><option value="Recent_Data_Rate">近期数据率</option><option value="Missing_Rate">缺失率</option></select></label></div>
-      <div id="transparencySummary" class="summary-cards"></div><div id="transparencyBars" class="transparency-bars"></div>
-    </section>
-
-    <section id="readiness" class="section">
-      <div class="section-head split"><div><div class="kicker">42-INDICATOR READINESS</div><h2>完整评价数据准备度</h2><p>按数据获取方式展示42项准备状态。缺失为空，不折算为0。</p></div><label class="select-label">选择园区<select id="matrixSelect"></select></label></div>
-      <div id="readinessSummary" class="summary-cards"></div><div id="matrixLegend" class="matrix-legend"></div><div id="indicatorMatrix" class="indicator-matrix"></div>
-    </section>
-
-    <section id="c55" class="section section-dark">
-      <div class="section-head split"><div><div class="kicker">C55-P STATUS FOCUS</div><h2>绿色低碳建设状态专题</h2><p>数量从CSV动态汇总，当前状态与历史记录分开呈现。</p></div><div class="contribution-actions"><button class="button light" data-open-contribution="NEW_STATUS">＋ 补充建设状态</button><button class="button light" data-open-contribution="CORRECTION">发现信息有误？提交纠错</button></div></div>
-      <div id="c55Stats" class="c55-stats"></div><div class="c55-grid"><article><h3>正式认定园区</h3><div id="designatedList" class="park-list"></div></article><article><h3>建设名单园区</h3><div id="selectedList" class="park-list"></div></article><article><h3>历史状态</h3><div id="historyList" class="history-list"></div></article></div>
-      <div class="submission-log-panel"><div><h3>数据补充记录</h3><p>只展示已登记的公开审核状态，不公开提交人联系方式。</p></div><a class="button light" href="https://github.com/Erwintao21/zero-carbon-park-atlas/issues?q=is%3Aissue+label%3Ac55p" target="_blank" rel="noopener">查看待审核 Issues ↗</a></div>
-      <div id="submissionLog" class="submission-log"></div>
-    </section>
-
-    <section id="contribute" class="section contribution-section">
-      <div class="section-head split"><div><div class="kicker">PUBLIC DATA CONTRIBUTION</div><h2>数据共建</h2><p>如果您掌握园区正式认定、建设名单、试点、规划状态或其他权威公开资料，可以提交补充。所有信息经人工审核后才进入正式数据库。</p></div><div class="contribution-actions"><button class="button primary" data-open-contribution="NEW_STATUS">补充建设状态</button><button class="button" data-open-contribution="CORRECTION">提交信息纠错</button></div></div>
-      <div class="contribution-principles"><article><strong>先证据、后状态</strong><span>每项提交必须提供可访问的来源与直接支持判断的简短证据。</span></article><article><strong>先审核、后入库</strong><span>GitHub Issue 默认进入 PENDING 队列，不直接修改正式 CSV。</span></article><article><strong>只追加、不覆盖</strong><span>接受的新状态和纠错记录追加到历史库，保留原记录与追溯关系。</span></article></div>
-      <p class="fixed-boundary">当前只正式开放 <strong>C55P_STATUS</strong>。代码已为未来的 INDICATOR_VALUE、EVIDENCE_CORRECTION 和 PARK_INFORMATION 预留类型接口。</p>
-    </section>
-
-    <section id="sources" class="section">
-      <div class="section-head split"><div><div class="kicker">TRACEABLE EVIDENCE</div><h2>数据来源</h2><p>所有公开状态与公开值通过Evidence_ID回到统一证据库。</p></div><label class="search source-search">检索证据<input id="evidenceSearch" type="search" placeholder="园区、指标、发布者或Evidence_ID"></label></div>
-      <div class="table-wrap"><table><thead><tr><th>Evidence ID</th><th>园区</th><th>公开事实</th><th>发布者 / 年份</th><th>来源</th></tr></thead><tbody id="evidenceTable"></tbody></table></div><button id="moreEvidence" class="button outline">显示更多</button>
-    </section>
-
-    <section id="method" class="section method-section">
-      <div class="section-head"><div><div class="kicker">METHODOLOGY</div><h2>方法说明</h2></div></div>
-      <div class="method-grid"><article><h3>本网站展示什么</h3><p>公开数据可验证的园区建设状态、公开信息透明度、42项完整评价的数据准备状态及可追溯证据。</p></article><article><h3>本网站不做什么</h3><p>不计算67园区综合绿色发展评分，不输出绿色发展排名、benchmark或100分总分。公开信息缺失不代表园区表现较差。</p></article><article><h3>完整评价还需要什么</h3><p>园区填报、企业调查、环境监测、能源监测、水务数据、安全管理系统和智慧园区数据。</p></article><article><h3>数据更新与审核</h3><p>用户补充或纠错先进入待审核队列；经来源与园区归属核验后才追加进正式历史库。所有旧记录保留，当前状态只由最高等级的已验证证据计算。</p></article></div>
-    </section>
-  </main>
-
-  <dialog id="contributionDrawer" class="drawer" aria-labelledby="contributionTitle">
-    <div class="drawer-shell">
-      <header class="drawer-head"><div><div class="kicker">C55-P STATUS SUBMISSION</div><h2 id="contributionTitle">补充 / 纠正建设状态</h2><p>本表单只生成预填 GitHub Issue，不会直接写入正式 CSV。</p></div><button class="icon-button" type="button" data-close-drawer aria-label="关闭">×</button></header>
-      <div class="drawer-grid">
-        <form id="contributionForm" novalidate>
-          <input type="hidden" name="Submission_Type_System" value="C55P_STATUS">
-          <section class="form-group"><h3>① 园区</h3><label>园区（67个现有园区）<select id="contributionPark" name="Park_ID" required></select></label><label id="otherParkWrap" hidden>园区名称（不在列表，进入单独人工复核）<input id="otherParkName" name="Other_Park_Name" autocomplete="organization"></label><output id="selectedParkId" class="field-note"></output></section>
-          <section class="form-group"><h3>② 建设状态</h3><div class="form-columns"><label>提交类型<select name="Submission_Type" required><option value="NEW_STATUS">新增状态</option><option value="UPDATE">状态更新</option><option value="CORRECTION">信息纠错</option><option value="SOURCE_SUPPLEMENT">补充证据</option></select></label><label>建议状态<select name="Proposed_Status" required><option value="">请选择</option><option value="DESIGNATED">正式认定</option><option value="SELECTED_FOR_CONSTRUCTION">入选建设名单</option><option value="PILOT">试点</option><option value="PLANNED">规划建设</option><option value="OTHER">其他</option><option value="UNKNOWN">不确定</option></select></label><label>认定层级<select name="Recognition_Level" required><option value="NATIONAL">国家级</option><option value="PROVINCIAL">省级</option><option value="MUNICIPAL">市级</option><option value="OTHER">其他</option><option value="UNKNOWN">未知</option></select></label><label>状态名称<input name="Recognition_Name" required placeholder="如：国家绿色工业园区"></label><label>状态生效年份<input name="Status_Year" inputmode="numeric" required placeholder="2026"></label></div></section>
-          <section class="form-group"><h3>③ 证据信息</h3><div class="form-columns"><label>发布机构<input name="Publisher" required placeholder="如：国家发展改革委"></label><label>文件 / 公告名称<input name="Source_Title" required></label><label>发布时间<input name="Publication_Date" required placeholder="YYYY 或 YYYY-MM-DD"></label><label class="full">官方来源 URL<input name="Source_URL" type="url" required placeholder="https://..." aria-describedby="urlHint"><small id="urlHint">优先填写 gov.cn、政府部门或官方机构来源，仅允许 http/https。</small></label><label class="full">支持该状态的原文<textarea name="Evidence_Text" required rows="3" placeholder="填写直接支持判断的一句话或简短描述，请勿粘贴整篇文章。"></textarea></label><label>页码 / 章节<input name="Evidence_Location" placeholder="第12页、附件1、表3"></label></div></section>
-          <section class="form-group"><h3>④ 补充说明</h3><label>备注<textarea name="Notes" rows="2"></textarea></label><div class="form-columns"><label>被替代的 Evidence ID（纠错时选填）<input name="Supersedes_Evidence_ID" placeholder="如：S3E-0028"></label><label>被纠正的记录 ID（纠错时选填）<input name="Corrects_Record_ID"></label><label>提交人（可选）<input name="Contributor_Name" autocomplete="name"></label><label>联系方式（可选）<input name="Contributor_Contact" autocomplete="email"><small>不会写入公开 Issue、提交日志或园区数据库。</small></label></div></section>
-          <div id="formErrors" class="form-errors" role="alert" hidden></div>
-          <button class="button primary" type="submit">生成提交预览</button>
-        </form>
-        <aside class="status-guide"><h3>状态解释与最低证据</h3><dl><dt>DESIGNATED</dt><dd>已获得正式认定或正式创建结果。应提供主管部门正式文件、名单、公告或PDF；媒体或园区宣传仅标为低质量并人工复核。</dd><dt>SELECTED_FOR_CONSTRUCTION</dt><dd>入选建设名单或建设任务，不表示已经建成或达标。优先提供政府通知及附件名单。</dd><dt>PILOT</dt><dd>正式列入“试点”或“示范试点”，证据应出现明确正式措辞。</dd><dt>PLANNED</dt><dd>规划或拟建设，可依据规划、实施方案或政府工作报告，但不能视为已认定。</dd><dt>UNKNOWN</dt><dd>暂时无法判断，必须保留证据并等待人工复核。</dd></dl></aside>
-      </div>
-      <section id="submissionPreview" class="submission-preview" hidden><div class="kicker">⑤ SUBMISSION PREVIEW</div><h3>提交预览</h3><dl id="previewFields"></dl><p class="fixed-boundary">本次提交不会直接修改数据库，需要管理员人工审核。</p><div class="preview-actions"><button class="button" id="backToEdit" type="button">返回修改</button><a class="button primary" id="confirmSubmission" target="_blank" rel="noopener">确认提交 GitHub Issue ↗</a></div><p id="submissionThanks" class="success-note" hidden>感谢补充。提交信息需要人工审核，审核通过后将进入园区建设状态历史库。</p></section>
+<main id="top">
+  <section class="section hero">
+    <div class="hero-copy">
+      <span class="eyebrow">ZERO-CARBON PARK PLATFORM · THU</span>
+      <h1>零碳园区公开数据、评价与实施决策平台</h1>
+      <p>将园区名录、42项评分标准、公开数据与来源、指标计算、减排措施和项目经济性放在同一页面。公开信息用于识别现状与补数任务；正式核算仍需同一边界、同一年度和可追溯园区台账。</p>
     </div>
-  </dialog>
+    <div class="workflow" aria-label="实施分析流程">
+      <a href="#workbench" data-workbench="readiness"><b>01</b><span>数据够不够</span></a>
+      <a href="#evaluation"><b>02</b><span>现状是什么</span></a>
+      <a href="#workbench" data-workbench="gap"><b>03</b><span>差距在哪里</span></a>
+      <a href="#workbench" data-workbench="measures"><b>04</b><span>怎么减</span></a>
+      <a href="#workbench" data-workbench="cost"><b>05</b><span>花多少钱</span></a>
+    </div>
+  </section>
 
-  <dialog id="historyDrawer" class="drawer history-drawer" aria-labelledby="historyTitle"><div class="drawer-shell"><header class="drawer-head"><div><div class="kicker">TRACEABLE STATUS HISTORY</div><h2 id="historyTitle">建设状态历史</h2></div><button class="icon-button" type="button" data-close-history aria-label="关闭">×</button></header><div id="parkHistoryTimeline" class="timeline"></div></div></dialog>
+  <section id="parks" class="section section-soft">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">01 · FULL PARK MAP</span>
+        <h2>零碳园区完整地图与名录</h2>
+        <p>地图部分完整保留“园区碳观察”的园区对象与空间信息：67个国内园区、国家级园区、广东园区和国际参考案例均可切换查看。点位用于空间导航，不替代园区法定四至边界。</p>
+      </div>
+      <div id="parkScopeText" class="quiet-count"></div>
+    </div>
+    <div class="map-toolbar-full">
+      <div class="segmented" id="mapScopeButtons" role="group" aria-label="地图范围">
+        <button class="active" data-scope="DOMESTIC" type="button">全国园区</button>
+        <button data-scope="NATIONAL" type="button">国家级</button>
+        <button data-scope="GUANGDONG" type="button">广东</button>
+        <button data-scope="GLOBAL" type="button">国际案例</button>
+      </div>
+      <label class="search"><span>搜索园区</span><input id="parkSearch" type="search" placeholder="园区、省份、城市、产业或国家"></label>
+      <button id="mapReset" class="button" type="button">复位地图</button>
+    </div>
+    <div class="map-full-layout">
+      <div class="map-card full-map-card">
+        <div class="map-meta-row"><strong id="mapCount">读取中…</strong><span id="mapViewLabel">全国园区</span></div>
+        <div id="fullMapCanvas" class="full-map-canvas">
+          <svg id="fullMapSvg" viewBox="0 0 1000 600" role="img" aria-label="零碳园区空间分布">
+            <g id="mapBase"></g>
+            <g id="mapMarkers"></g>
+          </svg>
+          <div id="mapLoading" class="map-loading">地图数据读取中…</div>
+        </div>
+        <div class="map-legend-full">
+          <span><i class="legend-dot national"></i>国家级建设名单</span>
+          <span><i class="legend-dot provincial"></i>省级园区</span>
+          <span><i class="legend-dot international"></i>国际参考案例</span>
+          <span class="map-boundary-note">坐标多为园区或所在片区近似中心，法定边界以批复/GIS文件为准。</span>
+        </div>
+      </div>
+      <aside class="map-side-full">
+        <div id="parkFullDetail" class="park-full-detail"><div class="empty">选择地图点位或园区名称查看完整资料卡。</div></div>
+        <div class="park-list-card full-list-card">
+          <div class="list-head"><strong>当前范围园区</strong><small id="parkListCount"></small></div>
+          <div id="parkList" class="park-list"></div>
+        </div>
+      </aside>
+    </div>
+    <div class="map-source-row">
+      <span>地图与扩展园区资料：0-CARBON-THU 公共数据底座</span>
+      <a class="source-link" href="https://cj-oi.github.io/0-CARBON-THU/" target="_blank" rel="noopener">查看原始平台 ↗</a>
+    </div>
+  </section>
 
-  <footer><strong>零碳园区公开数据图谱</strong><span>公开证据 · 状态画像 · 数据准备度</span><span id="dataStamp">数据读取中</span></footer>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js" defer></script>
-  <script src="contribution.js" defer></script>
+  <section id="standards" class="section">
+    <div class="section-head"><div><span class="eyebrow">02 · STANDARDS</span><h2>42项评分标准</h2><p>按产业发展、创新驱动、可持续发展、数智赋能四大类展示，并保留定义、单位和数据要求。</p></div><div id="indicatorCount" class="quiet-count"></div></div>
+    <div id="standardGrid" class="standard-grid"></div>
+  </section>
+
+  <section id="evaluation" class="section section-soft">
+    <div class="section-head"><div><span class="eyebrow">03 · EVALUATION</span><h2>评分结果、已搜集数据与来源</h2><p>展示平台暂定评价结果；缺失值不自动计为0。点击园区可查看已搜集指标值、年份和原始来源。</p></div><button id="openContributionTop" class="button primary">＋ 补充数据</button></div>
+    <div class="toolbar compact-toolbar"><label class="search"><span>查找园区</span><input id="scoreSearch" type="search" placeholder="输入园区名称"></label><label class="select-label"><span>排序</span><select id="scoreSort"><option value="score_desc">得分从高到低</option><option value="name">园区名称</option></select></label></div>
+    <div class="evaluation-layout"><div class="score-table-wrap"><table class="score-table"><thead id="scoreHead"></thead><tbody id="scoreBody"></tbody></table></div><aside class="data-panel"><div id="selectedParkHeading" class="data-panel-head"></div><div id="collectedData" class="collected-data"></div></aside></div>
+  </section>
+
+  <section id="workbench" class="section">
+    <div class="section-head"><div><span class="eyebrow">04 · IMPLEMENTATION WORKBENCH</span><h2>核心指标与实施工作台</h2><p>把“数据够不够—差距在哪里—怎么减—花多少钱”压缩到一个工作台中；数据准备字段、国家规则和减排措施从“园区碳观察”公开库读取。</p></div><a class="source-pill" href="https://cj-oi.github.io/0-CARBON-THU/" target="_blank" rel="noopener">园区碳观察 ↗</a></div>
+    <div class="workbench-tabs" id="workbenchTabs" role="tablist">
+      <button class="active" data-panel="calculator">核心指标</button><button data-panel="readiness">数据够不够</button><button data-panel="gap">差距在哪里</button><button data-panel="measures">怎么减</button><button data-panel="cost">花多少钱</button>
+    </div>
+
+    <div id="wb-calculator" class="workbench-panel active">
+      <div class="calculator-shell"><div class="formula-tabs" id="formulaTabs"></div><div class="calculator-card"><div id="formulaInfo" class="formula-info"></div><form id="calculatorForm" class="calculator-form"></form><div id="calculatorResult" class="calculator-result"><span>计算结果</span><strong>—</strong><small>请选择指标并输入数据</small></div></div></div>
+    </div>
+
+    <div id="wb-readiness" class="workbench-panel">
+      <div class="panel-headline"><div><h3>数据准备清单</h3><p>按边界与组织、能源、排放、经济、资源及项目参数检查。勾选代表该字段已具备可追溯材料。</p></div><div class="readiness-score"><strong id="readinessScore">—</strong><span id="readinessNote">外部字段库读取中</span></div></div>
+      <div class="toolbar"><div class="segmented"><button id="showAllFields" class="active">全部字段</button><button id="showP0Fields">仅P0</button></div><div class="inline-actions"><button id="clearFields" class="button">清空</button><button id="exportTasks" class="button primary">导出补数任务CSV</button></div></div>
+      <div id="fieldChecklist" class="field-checklist"><div class="empty">字段库读取中…</div></div>
+    </div>
+
+    <div id="wb-gap" class="workbench-panel">
+      <div class="panel-headline"><div><h3>国家试行指标差距核算</h3><p>仅在确认同一园区边界和同一自然年后进行。当前只计算公开规则中可直接复算的核心/引导指标。</p></div></div>
+      <form id="gapForm" class="gap-form">
+        <label class="check-line full"><input id="boundaryConfirmed" type="checkbox"> 已确认同一园区边界与同一自然年</label>
+        <label>综合能源消费量（tce）<input id="gapEnergy" type="number" min="0" step="any"></label><label>范围一排放（tCO₂）<input id="gapScope1" type="number" min="0" step="any"></label>
+        <label>范围二排放（tCO₂）<input id="gapScope2" type="number" min="0" step="any"></label><label>工业过程排放（tCO₂）<input id="gapProcess" type="number" min="0" step="any" value="0"></label>
+        <label>清洁能源消费占比（%）<input id="gapClean" type="number" min="0" max="100" step="any"></label><label>工业固废综合利用率（%）<input id="gapSolid" type="number" min="0" max="100" step="any"></label>
+        <label>余热/余冷/余压综合利用率（%）<input id="gapWasteEnergy" type="number" min="0" max="100" step="any"></label><label>工业用水重复利用率（%）<input id="gapWaterReuse" type="number" min="0" max="100" step="any"></label>
+        <button class="button primary full" type="submit">计算差距</button>
+      </form>
+      <div id="gapResult" class="result-area"><div class="empty">填入数据后计算。</div></div>
+    </div>
+
+    <div id="wb-measures" class="workbench-panel">
+      <div class="panel-headline"><div><h3>减排措施库</h3><p>用于前期筛选，不直接给出确定减排量或投资收益；正式项目需核实负荷、设备、边界、寿命和价格参数。</p></div><div id="measureCount" class="quiet-count"></div></div>
+      <div class="toolbar compact-toolbar"><label class="search"><span>检索</span><input id="measureSearch" type="search" placeholder="光伏、余热、储能、空压…"></label><label class="select-label"><span>方向</span><select id="measureDirection"><option value="ALL">全部方向</option></select></label></div>
+      <div id="measuresGrid" class="measures-grid"><div class="empty">措施库读取中…</div></div><button id="moreMeasures" class="button centered">显示更多</button>
+    </div>
+
+    <div id="wb-cost" class="workbench-panel">
+      <div class="panel-headline"><div><h3>项目经济性快速测算</h3><p>用于方案初筛。输入CAPEX、年度收益/成本、寿命和折现率，计算年净收益、静态回收期和NPV。</p></div></div>
+      <form id="costForm" class="cost-form">
+        <label>初始投资 CAPEX（万元）<input name="capex" type="number" min="0" step="any" required></label><label>年度节能/运营收益（万元/年）<input name="benefit" type="number" step="any" required></label>
+        <label>年度新增OPEX（万元/年）<input name="opex" type="number" min="0" step="any" value="0"></label><label>年减排量（tCO₂/年）<input name="abatement" type="number" min="0" step="any" value="0"></label>
+        <label>碳价值（元/tCO₂）<input name="carbonPrice" type="number" min="0" step="any" value="0"></label><label>项目寿命（年）<input name="life" type="number" min="1" step="1" value="10"></label>
+        <label>折现率（%）<input name="discount" type="number" min="0" step="any" value="5"></label><button class="button primary" type="submit">计算经济性</button>
+      </form>
+      <div id="costResult" class="result-area"><div class="empty">输入项目参数后计算。</div></div>
+    </div>
+  </section>
+
+  <section id="golmud" class="section section-soft">
+    <div class="section-head"><div><span class="eyebrow">05 · GOLMUD CASE</span><h2>格尔木园区代入计算与优化结果</h2><p>只展示最终计算结果与附件中的优化结果，不展示节点、物料矩阵和中间求解过程。</p></div></div>
+    <div class="segmented result-tabs" id="golmudTabs"><button class="active" data-view="composite">综合优化</button><button data-view="intensity">强度优化</button></div><div id="golmudContent"></div>
+  </section>
+
+  <section id="updates" class="section">
+    <div class="section-head"><div><span class="eyebrow">06 · UPDATES & REPORTS</span><h2>近期动态与报告</h2><p>仅保留与园区建设、技术设施、项目投融资和政策标准直接相关的信息，作为数据补充与项目线索入口。</p></div><div id="externalVersion" class="quiet-count"></div></div>
+    <div class="updates-layout"><div><div id="updatesGrid" class="updates-grid"><div class="empty">动态数据读取中…</div></div></div><aside class="reports-card"><h3>报告下载</h3><div id="reportLinks" class="report-links"></div><a class="source-link-block" href="https://cj-oi.github.io/0-CARBON-THU/" target="_blank" rel="noopener">查看“园区碳观察”完整站点 ↗</a></aside></div>
+  </section>
+</main>
+
+<dialog id="contributionDialog" class="dialog">
+  <form method="dialog" class="dialog-shell" id="contributionForm"><div class="dialog-head"><div><span class="eyebrow">DATA CONTRIBUTION</span><h2>补充公开数据</h2><p>提交内容生成预填 GitHub Issue，审核后再进入正式数据文件。</p></div><button class="icon-button" value="cancel" aria-label="关闭">×</button></div><div class="form-grid"><label>园区<select id="contributionPark" required></select></label><label>指标<select id="contributionIndicator" required></select></label><label>数据值<input id="contributionValue" placeholder="如 1.85"></label><label>数据年份<input id="contributionYear" inputmode="numeric" placeholder="2025"></label><label class="full">来源标题<input id="contributionTitle" placeholder="文件、公告、报告或统计公报名称"></label><label class="full">来源 URL<input id="contributionUrl" type="url" placeholder="https://..."></label><label class="full">补充说明<textarea id="contributionNote" rows="3" placeholder="说明数据口径、页码或其他必要信息"></textarea></label></div><div class="dialog-actions"><button class="button" value="cancel">取消</button><button id="createIssue" class="button primary" type="button">生成提交 Issue ↗</button></div></form>
+</dialog>
+
+<div id="toast" class="toast" role="status"></div>
+<footer><span>Zero-Carbon Park Data · Evaluation · Decision</span><span>公开证据 · 可追溯数据 · 可复算指标 · 实施初筛</span></footer>
+<script src="app.js?v=merged-v3.1"></script>
 </body>
 </html>

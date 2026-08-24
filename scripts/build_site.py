@@ -3,25 +3,24 @@ from __future__ import annotations
 import shutil
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
+WEB = ROOT / "web"
 SITE = ROOT / "site"
-DATA_FILES = (
-    "park_catalog.csv", "park_profiles.csv", "park_transparency.csv",
-    "park_indicator_availability.csv", "c55p_status_history.csv", "c55p_submission_log.csv",
-    "park_public_evidence.csv",
-)
+DATA = ROOT / "data"
 
 
 def main() -> None:
     if SITE.exists():
         shutil.rmtree(SITE)
-    shutil.copytree(ROOT / "web", SITE)
-    (SITE / "data").mkdir()
-    for name in DATA_FILES:
-        shutil.copy2(ROOT / "data" / name, SITE / "data" / name)
+    shutil.copytree(WEB, SITE)
+    site_data = SITE / "data"
+    site_data.mkdir(parents=True, exist_ok=True)
+    if DATA.exists():
+        for src in DATA.iterdir():
+            if src.is_file():
+                shutil.copy2(src, site_data / src.name)
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
-    print(f"built {SITE} with {len(DATA_FILES)} data files")
+    print(f"built v3.1 site from {WEB} with {len(list(site_data.glob('*')))} data files")
 
 
 if __name__ == "__main__":

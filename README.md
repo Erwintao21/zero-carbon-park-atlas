@@ -39,3 +39,8 @@ python scripts/update_c55_current_status.py
 ```
 
 该脚本保留全部历史行，只使用已接受的E3/E4证据按状态优先级和年份更新Current Status。
+
+
+## V2 双分辨率平台
+
+平台采用 **52园区粗画像 → 精细核算 → 产业优化** 的双分辨率架构。粗评分用于全国快速筛查；精细核算使用指标/公式/因子注册库和园区台账；优化结果再次送回核算层验算。详见 `docs/PLATFORM_ARCHITECTURE_V2.md`。
